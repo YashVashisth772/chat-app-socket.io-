@@ -4,6 +4,7 @@ import Chat from './Chat';
 
 const socket = io.connect("https://node-server-test-omega.vercel.app",{
   withCredentials: true,
+  forceNew: true,
   extraHeaders: {
     'Access-Control-Allow-Origin' : true
   },  // transports : ['websocket', 'polling', 'flashsocket'] 
