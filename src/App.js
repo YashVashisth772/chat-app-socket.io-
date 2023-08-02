@@ -2,7 +2,9 @@ import { useState } from 'react';
 import io from 'socket.io-client'
 import Chat from './Chat';
 
-const socket = io.connect("https://node-server-test-one.vercel.app/")
+const socket = io.connect("https://node-server-test-one.vercel.app",{
+  withCredentials: true
+})
 socket.on("notification",(data)=> console.log('testing notification data',data))
 socket.on("send_message",(data)=> console.log('testing send_message',data))
 
