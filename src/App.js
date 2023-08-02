@@ -6,7 +6,8 @@ const socket = io.connect("https://node-server-test-one.vercel.app",{
   withCredentials: true,
   extraHeaders: {
     'Access-Control-Allow-Origin' : true
-  }
+  },
+  transports : ['websocket'] 
 })
 socket.on("notification",(data)=> console.log('testing notification data',data))
 socket.on("send_message",(data)=> console.log('testing send_message',data))
