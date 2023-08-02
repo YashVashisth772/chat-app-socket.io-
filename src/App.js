@@ -2,7 +2,7 @@ import { useState } from 'react';
 import io from 'socket.io-client'
 import Chat from './Chat';
 
-const socket = io.connect("https://node-server-test-one.vercel.app:9001",{
+const socket = io.connect("https://node-server-test-omega.vercel.app:9001",{
   withCredentials: true,
   extraHeaders: {
     'Access-Control-Allow-Origin' : true
