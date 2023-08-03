@@ -28,7 +28,7 @@ function App() {
     }
     )
   useEffect(() => {
-    
+    console.info('test ****',);
     socket.connect();
     console.info('test socket', socket);
     socket.on("notification", (data) => console.log('testing notification data', data))
