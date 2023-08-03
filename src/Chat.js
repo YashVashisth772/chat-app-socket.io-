@@ -12,7 +12,7 @@ function Chat({ socket, userName, room }) {
                 time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
             }
         
-        const response = await fetch('https://node-server-test-omega.vercel.app//webhook',{
+        const response = await fetch('https://node-server-test-omega.vercel.app/webhook',{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
