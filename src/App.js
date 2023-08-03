@@ -2,13 +2,10 @@ import { useState } from 'react';
 import io from 'socket.io-client'
 import Chat from './Chat';
 
-const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:9001/';
-const socket = io.connect(URL
-// ,{
-//   extraHeaders: {
-//     'Access-Control-Allow-Origin' : true
-//   }, 
-// }
+const URL = process.env.NODE_ENV === 'production' ? 'https://node-server-test-omega.vercel.app:9001' : 'http://localhost:9001/';
+const socket = io.connect(URL,{
+  origin: '*',
+}
 )
 socket.on("notification",(data)=> console.log('testing notification data',data))
 socket.on("send_message",(data)=> console.log('testing send_message',data))
