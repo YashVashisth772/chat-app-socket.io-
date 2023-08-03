@@ -2,7 +2,7 @@ import { useState } from 'react';
 import io from 'socket.io-client'
 import Chat from './Chat';
 
-const URL = process.env.NODE_ENV === 'production' ? 'https://node-server-test-omega.vercel.app' : 'http://localhost:9001/';
+const URL = process.env.NODE_ENV === 'production' ? 'https://node-server-test-omega.vercel.app:9001' : 'http://localhost:9001/';
 const socket = io.connect(URL,{
   origin: '*',
 }
