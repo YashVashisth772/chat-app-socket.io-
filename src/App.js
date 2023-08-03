@@ -1,35 +1,48 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import io from 'socket.io-client'
 import Chat from './Chat';
 
-const URL = process.env.NODE_ENV === 'production' ? 'https://node-server-test-omega.vercel.app:9001' : 'http://localhost:9001/';
-const socket = io.connect(URL,{
-  origin: '*',
-}
-)
-console.info('test socket',socket);
-socket.on("notification",(data)=> console.log('testing notification data',data))
-socket.on("send_message",(data)=> console.log('testing send_message',data))
+// const URL = process.env.NODE_ENV === 'production' ? 'https://node-server-test-omega.vercel.app:9001' : 'http://localhost:9001/';
+// const socket = io.connect(URL, {
+//   origin: '*',
+// }
+// )
+// console.info('test socket', socket);
+// socket.on("notification", (data) => console.log('testing notification data', data))
+// socket.on("send_message", (data) => console.log('testing send_message', data))
+
 
 function App() {
 
-  const [username,setUsername] = useState("");
-  const [room,setRoom] = useState("")
+  const [username, setUsername] = useState("");
+  const [room, setRoom] = useState("")
 
   const joinRoom = () => {
     if (username !== "" && room !== "") {
       socket.emit("join_room", room);
     }
   };
+  useEffect(() => {
+    const URL = process.env.NODE_ENV === 'production' ? 'https://node-server-test-omega.vercel.app:9001' : 'http://localhost:9001/';
+    const socket = io.connect(URL, {
+      origin: '*',
+    }
+    )
+    socket.connect();
+    console.info('test socket', socket);
+    socket.on("notification", (data) => console.log('testing notification data', data))
+    socket.on("send_message", (data) => console.log('testing send_message', data))
+    
+  }, [])
 
   return (
     <div className="App">
       <h3>Join A Chat</h3>
-     <input type="text" placeholder="John..." onChange={(e) => setUsername(e.target.value)}/>
-     <input type="text" placeholder='RoomId' onChange={(e)=> setRoom(e.target.value)}/>
-     <button onClick={joinRoom}>Join A Room</button>
+      <input type="text" placeholder="John..." onChange={(e) => setUsername(e.target.value)} />
+      <input type="text" placeholder='RoomId' onChange={(e) => setRoom(e.target.value)} />
+      <button onClick={joinRoom}>Join A Room</button>
 
-     <Chat socket={socket} username={username} room={room} />
+      <Chat socket={socket} username={username} room={room} />
     </div>
   );
 }
