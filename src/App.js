@@ -4,14 +4,11 @@ import Chat from './Chat';
 
 const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:9001/';
 const socket = io.connect(URL
-,{
-  // withCredentials: true,
-  // forceNew: true,
-  extraHeaders: {
-    'Access-Control-Allow-Origin' : true
-  }, 
-   // transports : ['websocket', 'polling', 'flashsocket'] 
-}
+// ,{
+//   extraHeaders: {
+//     'Access-Control-Allow-Origin' : true
+//   }, 
+// }
 )
 socket.on("notification",(data)=> console.log('testing notification data',data))
 socket.on("send_message",(data)=> console.log('testing send_message',data))
