@@ -7,6 +7,7 @@ const socket = io.connect(URL,{
   origin: '*',
 }
 )
+console.info('test socket',socket);
 socket.on("notification",(data)=> console.log('testing notification data',data))
 socket.on("send_message",(data)=> console.log('testing send_message',data))
 
